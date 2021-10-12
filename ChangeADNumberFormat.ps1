@@ -1,4 +1,4 @@
-# This script replaces a character within all phone number fields for ever user in Active Directory.
+# This script replaces a character within all phone number fields for every user in Active Directory.
 # For example, if your company wants to move from storing phone numbers as "123-456-7890" to "123.456.7890", change the $characterToReplace to '-' and the $newCharacter to '.'.
 
 ###
