@@ -1,5 +1,5 @@
 
-
+# Change the SearchBase to the DN of your OU.
 $searchBase = 'OU=Computers,OU=_SWC,DC=sw-construction,DC=com'
 $allComputers = Get-ADComputer -SearchBase $searchBase -SearchScope Subtree -Properties 'OperatingSystem'-Filter *
 $credential = Get-Credential
