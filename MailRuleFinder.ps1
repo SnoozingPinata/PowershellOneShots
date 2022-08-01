@@ -1,10 +1,12 @@
+Import-Module ExchangeOnlineManagement
+
 
 # Change these varibles for your environment.
 $adminUserName = ''
 $outputFilePath = "C:\365Reports\365MailRulesReport.csv"
 
 # Connecting to Exchange Online. Need to change this if you're using a different service. (like on prem)
-Connect-EXOPSSession -UserPrincipalName $adminUserName
+Connect-ExchangeOnline -UserPrincipalName $adminUserName
 
 # Adding role to account so you can run this report.
 Add-RoleGroupMember -Identity "Discovery Management" -Member $adminUserName
