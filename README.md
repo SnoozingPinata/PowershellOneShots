@@ -19,3 +19,6 @@ ADUserCSVImport.ps1
   - This imports users from a CSV and creates a new account for them in AD with the assigned values.
   - Need to have a semicolon delimited CSV with the following columns: Username, Firstname, Lastname, ou, Password, Description saved at C:\UsersList.csv
   - Default Log file is C:\ADUserCSVImportScriptLog.txt so make sure your account can write to that location or change the path of the log file within the script
+
+PCLastLogonTimeStampsReport.ps1
+  - Gets the LastLogonTimeStamp for all workstations (gets the latest timestamp by searching all domain controllers) and exports the data to a CSV.
