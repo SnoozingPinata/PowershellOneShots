@@ -61,13 +61,13 @@ Function Write-Log {
     Add-Content -Path $LogFilePath -Value $logMessage -ErrorAction Stop
 }
 
-$logFilePath = 'C:\ADUserCSVImportScriptLog.txt'
-Write-Log -LogString "`nADUserCSVImport Script Started" -LogFilePath $logFilePath
+$logFilePath = 'C:\logs\ADUserCSVImportScriptLog.txt'
+Write-Log -LogString "ADUserCSVImport Script Started" -LogFilePath $logFilePath
 
-$importedUsers = Import-Csv -Path 'C:\UsersList.csv' -Delimiter ";"
+$importedUsers = Import-Csv -Path 'C:\ITFiles\UsersList.csv' -Delimiter ","
 
 foreach ($User in $importedUsers) {
-    Write-Log -LogString "Started User $($User.Username)" -LogFilePath $logFilePath
+    Write-Log -LogString "Processing User $($User.Username)" -LogFilePath $logFilePath
 
     $UserProperties = @{
         SamAccountName = $User.Username
@@ -84,9 +84,9 @@ foreach ($User in $importedUsers) {
 
     if (Test-ADUser -Identity $User.Username) {
         Write-Warning "$($User.Username) already exists"
-        Write-Log -LogString " - User $($User.Username) already exsists." -LogFilePath $logFilePath
+        Write-Log -LogString "User $($User.Username) already exists." -LogFilePath $logFilePath
     } else {
-        Write-Log -LogString " - Adding AD Account for user $($User.Username)" -LogFilePath $logFilePath
-        New-ADUser $UserProperties
+        New-ADUser @UserProperties
+        Write-Log -LogString "Adding AD Account for user $($User.Username)" -LogFilePath $logFilePath
     }
 }
